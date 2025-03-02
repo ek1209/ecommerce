@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto py-8">
+  <div class="container mx-auto py-8 px-4 md:px-0">
     <!-- Sorting Controls -->
     <div class="flex flex-col sm:flex-row sm:justify-between items-center mb-6 w-full">
       <div class="w-full sm:w-1/4 mb-4 sm:mb-0">
@@ -7,7 +7,7 @@
         <UInput
           v-model="searchQuery"
           size="xl"
-          color="primary"
+          color="gray"
           variant="outline"
           placeholder="Search..."
           @input="debouncedRefresh"
@@ -78,6 +78,7 @@ useHead({
 const orderItems = [
   { name: "Title", value: "title" },
   { name: "Rating", value: "rating" },
+  { name: 'Category', value: "category"}
 ];
 
 const sortItems = [

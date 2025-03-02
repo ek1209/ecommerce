@@ -9,19 +9,32 @@
 </template>
 
 <script setup>
+import { ref, watch, defineProps, defineEmits } from 'vue';
+
 const props = defineProps({
   placeholder: {
     type: String,
   },
   modelValue: {
-    type: String
+    type: String,
+    required: true,
   },
   data: {
     type: Array,
+    required: true,
   },
 });
-const selected = ref("");
-selected.value = props.modelValue;
+
+const emit = defineEmits();
+
+const selected = ref(props.modelValue);
+
+// Watch for changes in modelValue to keep local selected in sync
+watch(() => props.modelValue, (newValue) => {
+  selected.value = newValue;
+});
+
+// Emit changes when selected changes
 watch(selected, (newValue) => {
   emit("update:modelValue", newValue);
 });
